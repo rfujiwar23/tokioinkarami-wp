@@ -70,20 +70,20 @@ get_header(); ?>
                     <?php foreach ($innerLinks as $link) :
                     ?>
 
-                        <div class="col-md-4 col-6">
+                        <div class="col-md-4 col-sm-6 col-10 offset-col-1">
                             <div class="nav-card">
-                                <div class="text">
-                                    <h3><?php echo $link['go_to_text']; ?></h3>
-                                    <p><?php echo $link['go_to_text_jp']; ?></p>
-                                </div>
+                                
 
                                 <div class="img">
+                                    <h3><ruby><?php echo $link['go_to_text']; ?><rt><?php echo $link['go_to_text_jp']; ?></rt></ruby></h3>
                                     <img src="<?php echo $link['go_to_image']; ?>" alt="" class="img-fluid">
-                                    <div class="inner-link">
+                                </div>
+                                <div class="links row">
+                                    <div class="inner-link col-6">
                                         <a href="<?php echo $link['link']['url']; ?>">もっと見る</a>
                                     </div>
                                     <?php if ($link['ext_link']) : ?>
-                                        <div class="ext-link">
+                                        <div class="ext-link col-6 text-end">
                                             <a href="<?php echo $link['ext_link']; ?>"><?php echo $link['link_text']; ?></a>
                                         </div>
                                     <?php endif; ?>
@@ -239,22 +239,25 @@ get_header(); ?>
 
         <?php if ($_posts->have_posts()) : ?>
             <div class="my-3">
-                <h2 class="text-center my-4">NEWS</h2>
+                <h2 class="text-center my-4">投稿・お知らせ</h2>
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-10 offset-sm-1">
                     <?php while ($_posts->have_posts()) : $_posts->the_post(); ?>
-                        <div class="row news">
-                            <div class="col-lg-3 col-md-3 col-sm-2 col-3">
+                        <div class="row">
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-2 col-3">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <img src="<?php the_post_thumbnail_url(); ?>" class="img-fluid" alt="<?php the_title(); ?>">
                                 <?php endif; ?>
-                            </div>
-                            <div class="col-lg-9 col-md-9 col-sm-10 col-9">
+                            </div> -->
+                            <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 col-sm-1 news">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php the_title(); ?>
                                 </a>
-                                <h4 class="time">投稿：20<?php the_time('y-m-j') ?></h4>
+                                <h4 class="time">投稿：<?php the_time('Y.m.d') ?></h4>
+                                <p class="category"><span><?php the_category( ' ' ); ?></span></p>
                                 <!-- <p><?php the_excerpt(); ?></p> -->
-                                <p><?php echo mb_substr(get_the_excerpt(), 0, 45) . '...'; ?></p>
+                                <p><?php echo mb_substr(get_the_excerpt(), 0, 50) . '...'; ?>
+                                <a href="<?php the_permalink(); ?>">もっと読む</a>
+                                </p>
                             </div>
                         </div>
                     <?php endwhile; ?>

@@ -21,6 +21,7 @@ get_header(); ?>
     <?php endif; ?>
 </div>
 
+<div class="main">
 <div class="container">
     <div class="page-title">
     <h2 class="text-center"><span><?php echo get_the_title(); ?></span></h2>
@@ -191,13 +192,14 @@ get_header(); ?>
                 $desc = get_sub_field('description');
             ?>
                
-               <div class="row">
-               <div class="col-lg-6">
+            <div class="row my-5">
+                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-10 offset-1 landscape_view_link px-0">
                     <a href="<?php echo $link; ?>"><img src="<?php echo $image; ?>" alt="<?php echo $title;?>" class="img-fluid"></a>    
-                <p></p>
-                <p><?php echo $title; ?></p> 
-                <p><?php echo $desc; ?></p>
-                
+                    <div class="text">
+                    <h4><span><?php echo $title; ?></span></h4> 
+                    <div class="disc"><?php echo $desc; ?></div>
+                    <a href="<?php echo $link; ?>" class="bottom-link">こちらをクリック</a>
+                    </div>
                 </div>
             </div>
             
@@ -254,16 +256,6 @@ get_header(); ?>
 
 
 </div>
-
-
-
-<section class="main-contents my-5">
-
-    
-
-
-</section>
-
-
+</div>
 
 <?php get_footer(); ?>
