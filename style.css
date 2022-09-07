@@ -1070,6 +1070,32 @@ p.post-time i {
       width:90%;
       font-size: 1em;
     }
+
+    .company-history .row-by-year .year {
+      background:#1e3373;
+      padding:10px 0;
+      text-align: center;
+      color:#fff;
+    }
+
+    .company-history .row-by-year .year p {
+      margin:0;
+    }
+
+    .company-history .row-by-year {
+      border-bottom:none;
+    }
+
+
+    .company-history .row-by-year .description {
+      margin-top: 2vh;
+    }
+
+    /* .company-history .row-by-year .month-and-contents {
+      margin-top: 3vh;
+
+    } */
+
   }
 
   @media screen and (max-width:500px) and (orientation : portrait) {

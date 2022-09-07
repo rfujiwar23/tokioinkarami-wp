@@ -165,26 +165,8 @@ get_header(); ?>
             <?php if (have_rows('company_info')) : ?>
                 <?php while (have_rows('company_info')) : the_row(); ?>
                     <?php if (get_row_layout() == 'company-history') : ?>
-                        <?php while (have_rows('history-row')) : the_row(); ?>
-                            <?php $newRow = get_sub_field('contents-by-month'); ?>
-                            <div class="row row-by-year">
-                                <div class="col-lg-2 col-2 px-0">
-                                    <p><?php echo get_sub_field('year'); ?></p>
-                                </div>
-                                <div class="col-lg-10 col-10 px-0">
-                                    <?php foreach ($newRow as $row) : ?>
-                                        <div class="month-and-contents row">
-                                            <div class="col-2 px-0">
-                                                <p><?php echo $row['month']; ?></p>
-                                            </div>
-                                            <div class="col-10">
-                                                <?php echo $row['description']; ?>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
+                        <?php get_template_part('components/about', 'history'); ?>
+                        
                     <?php endif; ?>
                 <?php endwhile; ?>
             <?php endif; ?>
