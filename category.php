@@ -1,3 +1,4 @@
+<div class="wrapper">
 <?php get_header();
 
 /**
@@ -30,3 +31,4 @@
 <?php endif; ?>
 </div>
 <?php get_footer(); ?>
+</div>

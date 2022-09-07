@@ -9,7 +9,7 @@
         </div>
     </div>
 </footer>
-<div class="copyright bg-dark text-white pt-3 pb-3">
+<!-- <div class="copyright bg-dark text-white pt-3 pb-3">
     <div class="container">
         <div class="row">
             <div class="col text-center">
@@ -17,9 +17,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <?php wp_footer(); ?>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.0/jquery-migrate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </html>
