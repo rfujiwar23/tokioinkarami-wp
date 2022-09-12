@@ -6,8 +6,10 @@
 
 get_header(); ?>
 
-<?php if (have_rows('top-image-slider')) : ?>
-    <?php while (have_rows('top-image-slider')) : the_row(); ?>
+
+
+<?php if (have_rows('top-image-video')) : ?>
+    <?php while (have_rows('top-image-video')) : the_row(); ?>
         <?php get_template_part('components/top', 'carousel'); ?>
     <?php endwhile; ?>
 <?php endif; ?>
@@ -23,146 +25,81 @@ get_header(); ?>
     <?php endif; ?>
 </div> -->
 
+<!-- <div class="" style="height:100vh; background:url(https://res.cloudinary.com/rfujiwar23/image/upload/v1612520150/pexels-jeremy-bishop-2922672.jpg); background-position:center; background-size:cover;" ></div> -->
 
-<div class="container my-5">
-    <?php if (have_rows('content')) : ?>
+<!-- <div class="container my-5"> -->
+<div class="my-5">
+<?php if (have_rows('content')) : ?>
 
-        <?php while (have_rows('content')) : the_row(); ?>
-            <?php if (get_row_layout() == 'inner_links') :
-                $innerLinks = get_sub_field('inner-link');
-            ?>
+<?php while (have_rows('content')) : the_row(); ?>
 
-                <div class="page-links">
-                    <h2 class="text-center"><span><?php echo get_sub_field('title') ?></span></h2>
-                    <div class="row d-flex justify-content-center">
-                        <?php foreach ($innerLinks as $link) :
-                        ?>
-
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-10 offset-col-1">
-                                <div class="nav-card">
-                                    <a href="<?php echo $link['Link']; ?>">
-                                    <div class="img-1" style="background:url(<?php echo $link['go_to_image']; ?>) no-repeat; background-position:center; background-size:cover;">
-                            
-                                    </div>
-                                    </a>
-
-                                    <!-- <div class="img">
-                                        <h3><ruby><?php echo $link['go_to_text']; ?><rt><?php echo $link['go_to_text_jp']; ?></rt></ruby></h3>
-                                        <img src="<?php echo $link['go_to_image']; ?>" alt="" class="img-fluid">
-                                    </div> -->
-                                    <!-- <pre><?php echo $link['Link']; ?></pre> -->
-                                    <div class="links">
-                                        <h3><?php echo $link['go_to_text']; ?><br><span><?php echo $link['go_to_text_jp']; ?></span></h3>
-                                        <p class="px-2"><?php echo $link['description']; ?></p>
-                                        <div class="row mb-3">
-                                            <div class="ext-link col-6">
-                                                <?php if ($link['ext_link']) : ?>
-                                                    <a href="<?php echo $link['ext_link']; ?>"><?php echo $link['link_text']; ?> <i class="lni lni-arrow-right"></i></a>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="inner-link col-6 text-end">
-                                                <a href="<?php echo $link['Link']; ?>">もっと見る <i class="lni lni-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-
-            <?php endif; ?>
-
-            <!-- ２カラム画像 -->
-            <?php if (get_row_layout() == 'two_column_img') : ?>
-                <?php get_template_part('components/category', 'twocolimg'); ?>
-            <?php endif; ?>
-
-            <!-- Free Text Area -->
-            <?php if (get_row_layout() == 'free_text_area') : ?>
-                <?php get_template_part('components/category', 'freetext'); ?>
-            <?php endif; ?>
-
-
-            <!-- もっと見る（外部リンク） -->
-            <?php if (get_row_layout() == 'linking_button_read_more') : ?>
-                <?php get_template_part('components/category', 'readmore1'); ?>
-            <?php endif; ?>
-
-            <!-- もっと見る（内部リンク） -->
-            <?php if (get_row_layout() == 'linking_button_read_more2') : ?>
-                <?php get_template_part('components/category', 'readmore2'); ?>
-            <?php endif; ?>
-
-            <!-- youTUbe動画 -->
-            <?php if (get_row_layout() == 'add_youTube_video') : ?>
-                <?php get_template_part('components/category', 'youtube'); ?>
-            <?php endif; ?>
-
-            <!-- 商品の紹介 -->
-            <?php if (get_row_layout() == 'brand_and_items') : ?>
-                <?php get_template_part('components/category', 'products'); ?>
-            <?php endif; ?>
-
-        <?php endwhile; ?>
-
+    <!-- 内部リンク -->
+    <?php if (get_row_layout() == 'inner_links') : ?>
+        <?php get_template_part('components/top', 'fscategory'); ?>
     <?php endif; ?>
 
-    <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 news-section">
-        <h3 class="text-center">NEWS</h3>
-        <?php
-        //get the posts
-        $args = array(
-            // post per page
-            'posts_per_page' => 3,
-            // order by ID
-            'orderby' => 'ID',
-            // descending order
-            'order' => 'DESC',
-        );
-        $the_query = new WP_Query($args);
-        if ($the_query->have_posts()) :
-            while ($the_query->have_posts()) :
-                $the_query->the_post();
-        ?>
-                <div class="news">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_title(); ?>
-                    </a>
-                    <h4 class="time">投稿：<?php the_time('Y.m.d') ?></h4>
-                    <p class="category"><span><?php the_category(' '); ?></span></p>
-                    <p><?php echo mb_substr(get_the_excerpt(), 0, 50) . '...'; ?>
-                        <a href="<?php the_permalink(); ?>">もっと読む</a>
-                    </p>
-                </div>
-            <?php endwhile;
-        else : ?>
-            <p class="text-center">投稿数：0件</p>
-        <?php endif;
-        wp_reset_postdata(); ?>
-        <div class="read-more text-center my-4">
-            <a class="btn btn-read-more" href="<?php bloginfo('url') ?>/news">記事一覧</a>
-        </div>
+
+
+    <!-- ２カラム画像 -->
+    <?php if (get_row_layout() == 'two_column_img') : ?>
+        <?php get_template_part('components/category', 'twocolimg'); ?>
+    <?php endif; ?>
+
+    <!-- Free Text Area -->
+    <?php if (get_row_layout() == 'free_text_area') : ?>
+        <?php get_template_part('components/category', 'freetext'); ?>
+    <?php endif; ?>
+
+
+    <!-- もっと見る（外部リンク） -->
+    <?php if (get_row_layout() == 'linking_button_read_more') : ?>
+        <?php get_template_part('components/category', 'readmore1'); ?>
+    <?php endif; ?>
+
+    <!-- もっと見る（内部リンク） -->
+    <?php if (get_row_layout() == 'linking_button_read_more2') : ?>
+        <?php get_template_part('components/category', 'readmore2'); ?>
+    <?php endif; ?>
+
+    <!-- youTUbe動画 -->
+    <?php if (get_row_layout() == 'add_youTube_video') : ?>
+        <?php get_template_part('components/category', 'youtube'); ?>
+    <?php endif; ?>
+
+    <!-- 商品の紹介 -->
+    <?php if (get_row_layout() == 'brand_and_items') : ?>
+        <?php get_template_part('components/category', 'products'); ?>
+    <?php endif; ?>
+
+<?php endwhile; ?>
+
+<?php endif; ?>
+</div>
+
+<div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 news-section">
+    <h3 class="text-center">NEWS</h3>
+    <?php get_template_part('components/top', 'news'); ?>
+    <div class="read-more text-center my-4">
+        <a class="btn btn-read-more" href="<?php bloginfo('url') ?>/news">記事一覧</a>
     </div>
+</div>
 
-    <hr>
+<hr>
 
-    <div class="container">
-        <div class="company-profile col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 py-5">
-            <?php if (have_rows('company_info')) : ?>
-                <?php while (have_rows('company_info')) : the_row(); ?>
-                    <?php if (get_row_layout() == 'table') : ?>
-                        <?php get_template_part('components/about', 'company'); ?>
-                    <?php endif; ?>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </div>
+
+
+<!-- </div> -->
+
+<div class="container">
+    <div class="company-profile col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 py-5">
+        <?php if (have_rows('company_info')) : ?>
+            <?php while (have_rows('company_info')) : the_row(); ?>
+                <?php if (get_row_layout() == 'table') : ?>
+                    <?php get_template_part('components/about', 'company'); ?>
+                <?php endif; ?>
+            <?php endwhile; ?>
+        <?php endif; ?>
     </div>
-
 </div>
 
 

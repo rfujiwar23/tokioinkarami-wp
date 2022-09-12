@@ -6,6 +6,12 @@
 
 get_header(); ?>
 
+<?php if (have_rows('sub-page')) : ?>
+    <?php while (have_rows('sub-page')) : the_row(); ?>
+        <?php get_template_part('components/sub', 'topvidimg'); ?>
+    <?php endwhile; ?>
+<?php endif; ?>
+
 
 <div class="jumbotron">
     <?php if (have_rows('banner_image')) : ?>
@@ -166,7 +172,6 @@ get_header(); ?>
                 <?php while (have_rows('company_info')) : the_row(); ?>
                     <?php if (get_row_layout() == 'company-history') : ?>
                         <?php get_template_part('components/about', 'history'); ?>
-                        
                     <?php endif; ?>
                 <?php endwhile; ?>
             <?php endif; ?>
