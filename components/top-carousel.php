@@ -1,6 +1,6 @@
 <?php if (get_row_layout() == 'top_page') : ?>
     <div class="bg-video-wrap">
-        <video src="<?php echo get_sub_field('movie'); ?>" loop muted autoplay>
+        <video src="<?php echo get_sub_field('movie'); ?>" loop muted autoplay playsinline poster="<?php echo get_sub_field('image'); ?>">
         </video>
         <div class="overlay">
         </div>

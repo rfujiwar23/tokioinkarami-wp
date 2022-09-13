@@ -993,6 +993,7 @@ video {
   width:100%;
   text-align: center;
   color:#fff;
+  max-width:520px;
 }
 
 .bg-video-wrap .text {
